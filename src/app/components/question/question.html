@@ -1,0 +1,38 @@
+@if (loading()) {
+  <p>Loading question…</p>
+} @else if (currentQuestion()) {
+  @if (currentQuestion(); as question) {
+    <section class="round-header">
+      <div>
+        <span class="round-label">{{ question.round }}</span>
+        <span class="progress">Question {{ question.questionNumber }} of {{ question.totalQuestions }}</span>
+      </div>
+      <div class="timer" [class.timer-low]="remainingSeconds() <= 30">{{ displayTime }}</div>
+    </section>
+
+    <section class="card">
+      <p class="technology">{{ question.technology }}</p>
+      <h2 class="question-text">{{ question.question }}</h2>
+
+      <div class="field">
+        <label for="answer">Your answer</label>
+        <textarea
+          id="answer"
+          name="answer"
+          rows="10"
+          placeholder="Type your answer here…"
+          [(ngModel)]="answer"
+          [disabled]="submitting()"
+        ></textarea>
+      </div>
+
+      @if (errorMessage(); as message) {
+        <p class="error-text">{{ message }}</p>
+      }
+
+      <button class="btn btn-primary" type="button" (click)="submit()" [disabled]="submitting()">
+        {{ submitting() ? 'Submitting…' : 'Submit answer' }}
+      </button>
+    </section>
+  }
+}

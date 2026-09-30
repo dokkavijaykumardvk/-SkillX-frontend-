@@ -1,0 +1,52 @@
+.round-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.round-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--accent-soft);
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.progress {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.timer {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.timer-low {
+  color: var(--warn);
+}
+
+.technology {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.question-text {
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 160px;
+}

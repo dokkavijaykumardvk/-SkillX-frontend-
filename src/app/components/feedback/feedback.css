@@ -1,0 +1,43 @@
+.score-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.score-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.score-value {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.score-max {
+  font-size: 18px;
+  color: var(--ink-soft);
+}
+
+.block {
+  margin-bottom: 24px;
+}
+
+.block h3 {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.block p {
+  margin: 0;
+}
+
+button {
+  width: 100%;
+}

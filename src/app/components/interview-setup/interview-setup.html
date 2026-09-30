@@ -1,0 +1,42 @@
+<section class="intro">
+  <h1>Set up your mock interview</h1>
+  <p>Tell us the role you're targeting and we'll tailor coding, aptitude, technical and HR rounds around it.</p>
+</section>
+
+<form class="card" (ngSubmit)="submit()">
+  <div class="field">
+    <label for="company">Company</label>
+    <input id="company" name="company" type="text" placeholder="e.g. Acme Corp" [(ngModel)]="company" [disabled]="loading()" />
+  </div>
+
+  <div class="field">
+    <label for="role">Role</label>
+    <input id="role" name="role" type="text" placeholder="e.g. Backend Engineer" [(ngModel)]="role" [disabled]="loading()" />
+  </div>
+
+  <div class="field">
+    <label for="experience">Experience level</label>
+    <input id="experience" name="experience" type="text" placeholder="e.g. 2 years" [(ngModel)]="experience" [disabled]="loading()" />
+  </div>
+
+  <div class="field">
+    <label for="technologies">Technologies</label>
+    <input
+      id="technologies"
+      name="technologies"
+      type="text"
+      placeholder="e.g. Java, Spring Boot, SQL"
+      [(ngModel)]="technologiesInput"
+      [disabled]="loading()"
+    />
+    <p class="hint">Comma-separated.</p>
+  </div>
+
+  @if (errorMessage(); as message) {
+    <p class="error-text">{{ message }}</p>
+  }
+
+  <button class="btn btn-primary" type="submit" [disabled]="loading()">
+    {{ loading() ? 'Starting…' : 'Start interview' }}
+  </button>
+</form>

@@ -1,0 +1,58 @@
+@if (loading()) {
+  <p>Scoring your interview…</p>
+} @else {
+  @if (errorMessage(); as message) {
+    <p class="error-text">{{ message }}</p>
+  }
+
+  @if (result(); as summary) {
+    <section class="intro">
+      <p class="eyebrow">{{ summary.company }} · {{ summary.role }}</p>
+      <h1>Here's how it went</h1>
+    </section>
+
+    <section class="card final-card">
+      <span class="final-label">Final score</span>
+      <span class="final-value">{{ summary.finalScore }}</span>
+      <p class="recommendation">{{ summary.recommendation }}</p>
+    </section>
+
+    <section class="breakdown">
+      <div class="breakdown-item">
+        <span class="breakdown-label">Coding</span>
+        <span class="breakdown-value">{{ summary.codingScore }}</span>
+      </div>
+      <div class="breakdown-item">
+        <span class="breakdown-label">Aptitude</span>
+        <span class="breakdown-value">{{ summary.aptitudeScore }}</span>
+      </div>
+      <div class="breakdown-item">
+        <span class="breakdown-label">Technical</span>
+        <span class="breakdown-value">{{ summary.technicalScore }}</span>
+      </div>
+      <div class="breakdown-item">
+        <span class="breakdown-label">HR</span>
+        <span class="breakdown-value">{{ summary.hrScore }}</span>
+      </div>
+    </section>
+
+    <section class="card block">
+      <h3>Strengths</h3>
+      <p>{{ summary.strengths }}</p>
+    </section>
+
+    <section class="card block">
+      <h3>Where to improve</h3>
+      <p>{{ summary.weaknesses }}</p>
+    </section>
+
+    <section class="card block">
+      <h3>Preparation plan</h3>
+      <p>{{ summary.preparationPlan }}</p>
+    </section>
+
+    <button class="btn btn-primary" type="button" (click)="startNew()">
+      Start new interview
+    </button>
+  }
+}

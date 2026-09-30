@@ -1,0 +1,27 @@
+<section class="intro">
+  <h1>Practice the interview before it counts.</h1>
+  <p>SkillX runs you through coding, aptitude, technical and HR rounds, then tells you exactly where you stand.</p>
+</section>
+
+<form class="card login-card" (ngSubmit)="submit()">
+  <div class="field">
+    <label for="name">Your name</label>
+    <input
+      id="name"
+      name="name"
+      type="text"
+      placeholder="e.g. Vijay Kumar Dokka"
+      autocomplete="name"
+      [(ngModel)]="name"
+      [disabled]="loading()"
+    />
+  </div>
+
+  @if (errorMessage(); as message) {
+    <p class="error-text">{{ message }}</p>
+  }
+
+  <button class="btn btn-primary" type="submit" [disabled]="loading()">
+    {{ loading() ? 'Signing in…' : 'Continue' }}
+  </button>
+</form>

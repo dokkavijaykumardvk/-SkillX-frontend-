@@ -1,0 +1,10 @@
+<header class="navbar">
+  <span class="brand">SkillX</span>
+
+  @if (auth.candidateName(); as name) {
+    <div class="session">
+      <span class="candidate">{{ name }}</span>
+      <button class="btn btn-secondary" type="button" (click)="logout()">Log out</button>
+    </div>
+  }
+</header>

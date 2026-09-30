@@ -1,0 +1,22 @@
+@if (result(); as answer) {
+  <section class="card">
+    <div class="score-row">
+      <span class="score-label">Score</span>
+      <span class="score-value">{{ answer.score }}<span class="score-max">/10</span></span>
+    </div>
+
+    <div class="block">
+      <h3>Feedback</h3>
+      <p>{{ answer.feedback }}</p>
+    </div>
+
+    <div class="block">
+      <h3>Ideal answer</h3>
+      <p>{{ answer.idealAnswer }}</p>
+    </div>
+
+    <button class="btn btn-primary" type="button" (click)="continue()">
+      Continue
+    </button>
+  </section>
+}
