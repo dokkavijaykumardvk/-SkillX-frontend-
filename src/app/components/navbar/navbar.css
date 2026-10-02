@@ -2,25 +2,93 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 32px;
-  border-bottom: 1px solid var(--line);
-  background: var(--panel);
+  padding: 14px 24px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .brand {
-  font-family: var(--font-display);
+  font-weight: 700;
   font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: inherit;
 }
 
-.session {
+.nav-right {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-.candidate {
+.nav-user {
   font-size: 14px;
-  color: var(--ink-soft);
+  color: #555;
+}
+
+.logout-btn {
+  padding: 7px 16px;
+  border: 1px solid #dc2626;
+  background: transparent;
+  color: #dc2626;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  color: #fff;
+}
+
+/* Logout popup */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-box {
+  background: #fff;
+  padding: 24px 28px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.popup-box h3 {
+  margin: 0 0 8px;
+}
+
+.popup-box p {
+  margin: 0 0 20px;
+  color: #555;
+}
+
+.popup-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.popup-btn {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.popup-cancel {
+  background: #e5e7eb;
+  color: #111;
+}
+
+.popup-confirm {
+  background: #dc2626;
+  color: #fff;
 }

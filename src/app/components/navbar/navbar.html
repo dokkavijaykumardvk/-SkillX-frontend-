@@ -1,10 +1,23 @@
 <header class="navbar">
-  <span class="brand">SkillX</span>
+  <a class="brand" routerLink="/">SkillX</a>
 
-  @if (auth.candidateName(); as name) {
-    <div class="session">
-      <span class="candidate">{{ name }}</span>
-      <button class="btn btn-secondary" type="button" (click)="logout()">Log out</button>
+  @if (candidateName(); as name) {
+    <div class="nav-right">
+      <span class="nav-user">{{ name }}</span>
+      <button class="logout-btn" type="button" (click)="openLogoutPopup()">Logout</button>
     </div>
   }
 </header>
+
+@if (showLogoutPopup()) {
+  <div class="popup-overlay" (click)="cancelLogout()">
+    <div class="popup-box" (click)="$event.stopPropagation()">
+      <h3>Confirm logout</h3>
+      <p>Are you sure you want to logout?</p>
+      <div class="popup-actions">
+        <button class="popup-btn popup-cancel" type="button" (click)="cancelLogout()">Cancel</button>
+        <button class="popup-btn popup-confirm" type="button" (click)="confirmLogout()">Yes, logout</button>
+      </div>
+    </div>
+  </div>
+}
