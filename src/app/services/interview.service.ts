@@ -10,15 +10,12 @@ import {
   StartInterviewRequest,
   StartInterviewResponse,
 } from '../models/interview.models';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class InterviewService {
-  private readonly apiUrl = 'http://localhost:8091/api/interviews';
+  private readonly apiUrl = `${environment.apiUrl}/api/interviews`;
 
-  /**
-   * Holds the most recent answer response so the feedback screen can read it
-   * without round-tripping large objects through the router.
-   */
   lastAnswer: AnswerResponse | null = null;
 
   constructor(private http: HttpClient) {}
@@ -27,12 +24,10 @@ export class InterviewService {
     return this.http.post<StartInterviewResponse>(`${this.apiUrl}/start`, request);
   }
 
-  /** Fetches the current/first question of a round. */
   getQuestion(interviewId: number): Observable<QuestionResponse> {
     return this.http.get<QuestionResponse>(`${this.apiUrl}/${interviewId}/question`);
   }
 
-  /** Advances to the next question within the current round. */
   getNextQuestion(interviewId: number): Observable<QuestionResponse> {
     return this.http.get<QuestionResponse>(`${this.apiUrl}/${interviewId}/next`);
   }

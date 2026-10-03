@@ -3,24 +3,45 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
 import { CandidateLoginResponse } from '../models/interview.models';
+import { environment } from '../../environments/environment';
 
 const NAME_KEY = 'skillx_candidate_name';
 const ID_KEY = 'skillx_candidate_id';
 
+function storageGet(key: string): string | null {
+  try {
+    return typeof localStorage !== 'undefined' ? localStorage.getItem(key) : null;
+  } catch {
+    return null;
+  }
+}
+
+function storageSet(key: string, value: string): void {
+  try {
+    if (typeof localStorage !== 'undefined') localStorage.setItem(key, value);
+  } catch {}
+}
+
+function storageRemove(key: string): void {
+  try {
+    if (typeof localStorage !== 'undefined') localStorage.removeItem(key);
+  } catch {}
+}
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly apiUrl = 'http://localhost:8091/api/candidate';
+  private readonly apiUrl = `${environment.apiUrl}/api/candidate`;
 
   /** Reactive current candidate name, read by the navbar. */
-  readonly candidateName = signal<string | null>(this.readStoredName());
+  readonly candidateName = signal<string | null>(storageGet(NAME_KEY));
 
   constructor(private http: HttpClient) {}
 
   login(name: string): Observable<CandidateLoginResponse> {
     return this.http.post<CandidateLoginResponse>(`${this.apiUrl}/login`, { name }).pipe(
       tap((response) => {
-        localStorage.setItem(NAME_KEY, response.name);
-        localStorage.setItem(ID_KEY, String(response.candidateId));
+        storageSet(NAME_KEY, response.name);
+        storageSet(ID_KEY, String(response.candidateId));
         this.candidateName.set(response.name);
       })
     );
@@ -28,21 +49,17 @@ export class AuthService {
 
   /** Client-side only: clears local storage, no backend call. */
   logout(): void {
-    localStorage.removeItem(NAME_KEY);
-    localStorage.removeItem(ID_KEY);
+    storageRemove(NAME_KEY);
+    storageRemove(ID_KEY);
     this.candidateName.set(null);
   }
 
   isLoggedIn(): boolean {
-    return !!this.readStoredName();
+    return !!storageGet(NAME_KEY);
   }
 
   getCandidateId(): number | null {
-    const raw = localStorage.getItem(ID_KEY);
+    const raw = storageGet(ID_KEY);
     return raw ? Number(raw) : null;
-  }
-
-  private readStoredName(): string | null {
-    return localStorage.getItem(NAME_KEY);
   }
 }
